@@ -3,7 +3,7 @@ import java.util.Scanner;
 
 public class TicTacToe {
 
-    // Scanner (for input)
+    // Scanner for input
     static Scanner input = new Scanner(System.in);
 
     // Game state variables
@@ -38,11 +38,11 @@ public class TicTacToe {
         }
     }
 
-    // UC2: Toss
+    // UC2: Toss logic
     public static void toss() {
 
         Random random = new Random();
-        int tossResult = random.nextInt(2);
+        int tossResult = random.nextInt(2); // 0 or 1
 
         if (tossResult == 0) {
             currentPlayer = "Player";
@@ -68,17 +68,31 @@ public class TicTacToe {
         return slot;
     }
 
+    // UC4: Convert slot to row and column
+    public static int[] convertSlotToIndex(int slot) {
+
+        int row = (slot - 1) / 3;
+        int col = (slot - 1) % 3;
+
+        return new int[]{row, col};
+    }
+
     public static void main(String[] args) {
 
-        // UC1
+        // UC1: Create & display board
         char[][] board = createBoard();
         printBoard(board);
 
-        // UC2
+        // UC2: Toss
         toss();
 
-        // UC3
+        // UC3: Get input
         int userSlot = getUserInput();
-        System.out.println("You selected slot: " + userSlot);
+
+        // UC4: Convert slot → index
+        int[] position = convertSlotToIndex(userSlot);
+
+        System.out.println("Row: " + position[0]);
+        System.out.println("Column: " + position[1]);
     }
 }
