@@ -1,11 +1,17 @@
+import java.util.Random;
+
 public class TicTacToe {
 
-    // Method to create and initialize board
+    // Game state variables
+    static char playerSymbol;
+    static char computerSymbol;
+    static String currentPlayer;
+
+    // UC1: Create board
     public static char[][] createBoard() {
 
         char[][] board = new char[3][3];
 
-        // Initialize board with '-'
         for (int i = 0; i < board.length; i++) {
             for (int j = 0; j < board[i].length; j++) {
                 board[i][j] = '-';
@@ -15,27 +21,48 @@ public class TicTacToe {
         return board;
     }
 
-    // Method to print board
+    // UC1: Print board
     public static void printBoard(char[][] board) {
 
-        System.out.println("Tic-Tac-Toe Board:\n");
+        System.out.println("\nTic-Tac-Toe Board:\n");
 
         for (int i = 0; i < board.length; i++) {
-
             for (int j = 0; j < board[i].length; j++) {
                 System.out.print(board[i][j] + " ");
             }
-
             System.out.println();
         }
     }
 
+    // UC2: Toss logic
+    public static void toss() {
+
+        Random random = new Random();
+        int tossResult = random.nextInt(2); // 0 or 1
+
+        if (tossResult == 0) {
+            currentPlayer = "Player";
+            playerSymbol = 'X';
+            computerSymbol = 'O';
+        } else {
+            currentPlayer = "Computer";
+            playerSymbol = 'O';
+            computerSymbol = 'X';
+        }
+
+        // Display result
+        System.out.println("Toss Result: " + currentPlayer + " starts!");
+        System.out.println("Player Symbol: " + playerSymbol);
+        System.out.println("Computer Symbol: " + computerSymbol);
+    }
+
     public static void main(String[] args) {
 
-        // Create board
+        // UC1
         char[][] board = createBoard();
-
-        // Display board
         printBoard(board);
+
+        // UC2
+        toss();
     }
 }
