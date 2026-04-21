@@ -1,6 +1,10 @@
 import java.util.Random;
+import java.util.Scanner;
 
 public class TicTacToe {
+
+    // Scanner (for input)
+    static Scanner input = new Scanner(System.in);
 
     // Game state variables
     static char playerSymbol;
@@ -34,11 +38,11 @@ public class TicTacToe {
         }
     }
 
-    // UC2: Toss logic
+    // UC2: Toss
     public static void toss() {
 
         Random random = new Random();
-        int tossResult = random.nextInt(2); // 0 or 1
+        int tossResult = random.nextInt(2);
 
         if (tossResult == 0) {
             currentPlayer = "Player";
@@ -50,10 +54,18 @@ public class TicTacToe {
             computerSymbol = 'X';
         }
 
-        // Display result
         System.out.println("Toss Result: " + currentPlayer + " starts!");
         System.out.println("Player Symbol: " + playerSymbol);
         System.out.println("Computer Symbol: " + computerSymbol);
+    }
+
+    // UC3: Get user input
+    public static int getUserInput() {
+
+        System.out.print("Enter slot (1-9): ");
+        int slot = input.nextInt();
+
+        return slot;
     }
 
     public static void main(String[] args) {
@@ -64,5 +76,9 @@ public class TicTacToe {
 
         // UC2
         toss();
+
+        // UC3
+        int userSlot = getUserInput();
+        System.out.println("You selected slot: " + userSlot);
     }
 }
